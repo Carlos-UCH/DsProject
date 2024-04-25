@@ -14,13 +14,14 @@ public class LifeSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
     void Update()
     {
         HealthLogic();
+        DeadState();
     }
 
     void HealthLogic(){
@@ -46,4 +47,13 @@ public class LifeSystem : MonoBehaviour
             }
         }
     }
+    void DeadState(){
+    if(vida <= 0){
+
+        GetComponent<player_controller>().enabled = false; 
+        Destroy(gameObject, 1.0f);
+    }
 }
+
+}
+
