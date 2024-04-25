@@ -15,6 +15,7 @@ public class player_controller : MonoBehaviour
 
     private Vector2 _playerDirection;
 
+    private bool _isAttack = false;
 
     void Start()
     {
@@ -46,6 +47,12 @@ public class player_controller : MonoBehaviour
         }
 
         playerRun();
+
+        OnAttack();
+
+        if(_isAttack){
+            _playerAnimator.SetInteger("Movement",6);
+        }
     
     }
 
@@ -93,6 +100,18 @@ public class player_controller : MonoBehaviour
 
         }
 
+    }
+
+    void OnAttack(){
+        if(Input.GetKeyDown(KeyCode.E)){
+            _isAttack = true; 
+            _playerSpeed = 0;
+        }
+
+        if(Input.GetKeyUp(KeyCode.E)){
+            _isAttack = false; 
+            _playerSpeed = _playerInitialSpeed;
+        }
     }
 
 
