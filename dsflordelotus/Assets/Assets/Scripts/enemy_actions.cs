@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class enemy_actions : MonoBehaviour
 {
+    public float DistanciaDoPlayer = 4.0f;
+    public GameObject Player;
 
     public float _enemySpeed = 2.5f;
     private Vector2 _golemDirection;
@@ -30,25 +33,22 @@ public class enemy_actions : MonoBehaviour
     void Update()
     {
         _golemDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
         
         if (_golemDirection.sqrMagnitude > 0)
         {
-
             _enemyAnimator.SetInteger("Movement", 1);
-
         }
         else
          {
-
             _enemyAnimator.SetInteger("Movement",0);
-
+            
         }
-
+        if (Vector3.Distance (transform.position, Player.transform.position) <= DistanciaDoPlayer) {
+            _enemyAnimator.SetInteger("Movement",7);
+ }
 
 
     }
-
 
     private void FixedUpdate() {
         
